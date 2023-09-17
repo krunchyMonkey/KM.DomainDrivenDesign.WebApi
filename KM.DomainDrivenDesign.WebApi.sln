@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KM.DomainDrivenDesign.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Km.Data", "KM.Data\Km.Data.csproj", "{B03F57C7-3CCF-4FD2-B654-B95975907CFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D7F30FD3-2282-47C9-94FA-CAD9C760192D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{E0CFB88E-DBC3-49C6-9BD9-9C31779396EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infractucture", "Infractucture", "{EEFB3C68-CD22-4608-8DF1-00AEDAE18632}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Person.WebApi", "Application\Person.WebApi\Person.WebApi.csproj", "{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +29,16 @@ Global
 		{B03F57C7-3CCF-4FD2-B654-B95975907CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B03F57C7-3CCF-4FD2-B654-B95975907CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B03F57C7-3CCF-4FD2-B654-B95975907CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C85475B5-E851-4BC2-9CCD-E4A9F55D55C4} = {D7F30FD3-2282-47C9-94FA-CAD9C760192D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49C87F79-59DA-4608-9B6B-307764B876AD}
