@@ -21,5 +21,12 @@ namespace KM.DomainDrivenDesign.WebApi.Controllers
         {
             return _krunchyPaymentsRepository.FetchPerson();
         }
+
+        [HttpPost(Name = "AddPerson")]
+        public void Post(Person person)
+        {
+            person.Id = Guid.NewGuid();
+            _krunchyPaymentsRepository.InsertPerson(person);
+        }
     }
 }

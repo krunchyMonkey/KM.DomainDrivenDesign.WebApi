@@ -13,11 +13,18 @@ namespace Km.Data.Repository
 
             var people = context
                 .People
-                .Where(p => p.Id == new Guid("DA9562B2-BD30-414A-B878-19579FFC3043"))
                 .ToList();
 
             return people;
 
+        }
+
+        public void InsertPerson(Person person) 
+        {
+            var context = new KrunchypaymentsContext();
+            context.People.Add(person);
+
+            context.SaveChanges();
         }
     }
 }

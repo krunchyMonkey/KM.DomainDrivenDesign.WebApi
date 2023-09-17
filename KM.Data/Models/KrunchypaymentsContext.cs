@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Km.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KM.Data.Models;
@@ -34,6 +35,36 @@ public partial class KrunchypaymentsContext : DbContext
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("lastName");
+        });
+
+
+
+        modelBuilder.Entity<PaymentMethod>(entity => {
+            entity.ToTable("PaymentMethod");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.PaymentType).HasColumnName("paymentType");
+            entity.Property(e => e.AccountNumber).HasColumnName("accountNumber");
+            entity.Property(e => e.CreditCardNumber).HasColumnName("creditCardNumber");
+            entity.Property(e => e.CurrencyCode).HasColumnName("currencyCode");
+            entity.Property(e => e.Cvv).HasColumnName("cvv");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.City).HasColumnName("city");
+            entity.Property(e => e.Zip).HasColumnName("ip");
+            entity.Property(e => e.RoutingNumber).HasColumnName("routingNumber");
+        
+        });
+
+        modelBuilder.Entity<Account>(entity => {
+            entity.ToTable("Account");
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.AccountType).HasColumnName("accountType");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.City).HasColumnName("city");
+            entity.Property(e => e.City).HasColumnName("Region");
+            entity.Property(e => e.City).HasColumnName("PostalCode");
+            entity.HasMany(e => e.PaymentMethods).WithMany();
+            entity.HasMany(e => e.People).WithMany();
         });
 
         OnModelCreatingPartial(modelBuilder);

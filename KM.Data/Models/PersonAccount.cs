@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Km.Data.Interface
+namespace Km.Data.Models
 {
-    public interface IKrunchyPaymentsRepository
+    public class PersonAccount
     {
-        List<Person> FetchPerson();
-        void InsertPerson(Person person);
+        public Guid PersonId { get; set; }
+        public Guid AccountId { get; set; }
     }
 }
