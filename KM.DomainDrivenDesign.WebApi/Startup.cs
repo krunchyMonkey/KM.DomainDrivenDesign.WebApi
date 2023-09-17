@@ -1,4 +1,8 @@
-﻿namespace KM.DomainDrivenDesign.WebApi
+﻿using Km.Data.Interface;
+using Km.Data.Repository;
+using KM.Data.Models;
+
+namespace KM.DomainDrivenDesign.WebApi
 {
     public class Startup
     {
@@ -12,9 +16,17 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Services
+
+            services.AddMvc();
+
             services.AddControllers();
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.AddScoped<IKrunchyPaymentsRepository,KrunchyPaymentsRepository>();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
