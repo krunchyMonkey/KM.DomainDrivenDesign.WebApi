@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Models
 {
-    internal class Person
+    public class Person
     {
+        public Guid Id { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public int? Age { get; set; }
     }
 }
