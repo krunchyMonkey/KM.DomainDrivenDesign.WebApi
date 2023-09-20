@@ -9,9 +9,8 @@ namespace Accounts.Domain.Interfaces
 {
     public interface IRepository<T> where T : class
     {
+        T GetById(object id);
+        IList<T> GetAll();
         void Add(T entity);
-        void Delete(T entity);
-        void Update(T entity);
-        IQueryable<T> List(Expression<Func<T, bool>> expression);
     }
 }

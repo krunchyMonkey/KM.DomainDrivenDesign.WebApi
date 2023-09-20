@@ -1,4 +1,7 @@
-﻿namespace Accounts.WebApi
+﻿using Accounts.Infrastucture.Context;
+using Microsoft.EntityFrameworkCore;
+
+namespace Accounts.WebApi
 {
     public class Startup
     {
@@ -20,7 +23,8 @@
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
-
+            services.AddDbContextPool<CustomDbContext>(o => 
+            o.UseSqlServer("Server=.,1433;Database=krunchypayments;User Id=SA;Password=Arcsin27$;TrustServerCertificate=True;"));
             // services.AddScoped<IKrunchyPaymentsRepository, KrunchyPaymentsRepository>();
             services.AddHttpContextAccessor();
         }
