@@ -19,7 +19,7 @@ namespace Accounts.Domain.Services
 
         public Account GetAccountById(Guid guid)
         {
-            return _accountDomain.GetAccount(guid);
+            return _accountDomain.GetAccountById(guid);
         }
     }
 }

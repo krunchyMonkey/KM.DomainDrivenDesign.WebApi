@@ -17,7 +17,8 @@ namespace Accounts.Domain
         {
             _accountRepsitory = unitOfWork.AccountRepository; ;
         }
-        public Account GetAccount(Guid id)
+
+        public Account GetAccountById(Guid id)
         {
             var results = _accountRepsitory.Query().Include(t => t.PaymentMethods)
                 .Include(t => t.People)
