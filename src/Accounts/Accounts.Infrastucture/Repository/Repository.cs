@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
-    public abstract class Repository<T> : IRepository<T> where T : class
+    public abstract class Repository<T> where T : IEntity
     {
         private readonly CustomDbContext _dbContext;
-        private readonly DbSet<T> _dbSet;
+        private readonly DbSet<IEntity> _dbSet;
 
-        public T GetById(object id)
+        public IEntity GetById(object id)
         {
             return _dbSet.Find(id);
         }
@@ -23,10 +23,10 @@ namespace Accounts.Infrastucture.Repository
         public Repository(CustomDbContext dbContext)
         {
             _dbContext = dbContext;
-            _dbSet = _dbContext.Set<T>();
+            _dbSet = _dbContext.Set<IEntity>();
         }
 
-        public IList<T> GetAll()
+        public IList<IEntity> GetAll()
         {
             return _dbSet.ToList();
         }

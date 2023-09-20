@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository
     {
-        T GetById(object id);
-        IList<T> GetAll();
-        void Add(T entity);
+        T GetById<T>(object id ) where T: IEntity;
+        IList<T> GetAll<T>() where T : IEntity;
+        void Add<T>(T entity) where T : IEntity;
     }
 }

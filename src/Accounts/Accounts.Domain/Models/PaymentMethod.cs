@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accounts.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Models
 {
-    public class PaymentMethod
+    public class PaymentMethod : IEntity
     {
         public Guid Id { get; set; }
         public string? PaymentType { get; set; }

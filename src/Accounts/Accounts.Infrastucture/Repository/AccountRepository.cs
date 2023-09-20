@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
-    public class AccountRepository : Repository<Account>, IRepository<Account>
+    public class AccountRepository : Repository<Account>
     {
         public AccountRepository(CustomDbContext dbContext) : base(dbContext)
         {

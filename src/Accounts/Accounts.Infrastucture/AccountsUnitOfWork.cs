@@ -10,10 +10,9 @@ namespace Accounts.Infrastucture
     {
         private readonly CustomDbContext _dbContext;
         private bool _disposed;
-        
+
         public AccountsOfWork(
-            Lazy<IRepository<Account>> AccountRepository,
-            Lazy<IRepository<PaymentMethod>> PaymentMethod)
+            CustomDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -35,10 +34,19 @@ namespace Accounts.Infrastucture
                 }
             }
         }
-        public IRepository<T> Repository<T>() where T : class
+        public IRepository Repository() where T : IEntity
         {
-            return new Repository<T>(_dbContext);
+            T? type = default(T);
+
+            
+            switch (type)
+            {
+                case Account account:
+                    return new AccountRepository(_dbContext);
+                case 
+            }
         }
+
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {

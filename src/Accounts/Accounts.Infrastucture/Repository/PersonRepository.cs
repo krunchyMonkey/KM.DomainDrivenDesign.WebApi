@@ -11,7 +11,7 @@ namespace Accounts.Infrastucture.Repository
 {
     public class PersonRepository : Repository<Person>
     {
-        public PersonRepository(CustomDbContext dbContext) : base(dbContext)
+        internal PersonRepository(CustomDbContext dbContext) : base(dbContext)
         {
         }
     }

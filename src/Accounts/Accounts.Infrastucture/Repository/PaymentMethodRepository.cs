@@ -11,7 +11,7 @@ namespace Accounts.Infrastucture.Repository
 {
     public class PaymentMethodRepository : Repository<PaymentMethod>, IRepository<PaymentMethod>
     {
-        public PaymentMethodRepository(CustomDbContext dbContext) : base(dbContext)
+        internal PaymentMethodRepository(CustomDbContext dbContext) : base(dbContext)
         {
         }
     }
