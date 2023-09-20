@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
-    public class PaymentMethodRepository : Repository<PaymentMethod>, IRepository<PaymentMethod>
+    public class PaymentMethodRepository : Repository<PaymentMethod>, IPaymentMethodRepository
     {
-        internal PaymentMethodRepository(CustomDbContext dbContext) : base(dbContext)
+        public PaymentMethodRepository(CustomDbContext dbContext) : base(dbContext)
         {
         }
     }

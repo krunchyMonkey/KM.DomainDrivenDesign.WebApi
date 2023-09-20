@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
-    public class PersonRepository : Repository<Person>, IRepository
+    public class PersonRepository : Repository<Person>, IRepository<Person>
     {
-        internal PersonRepository(CustomDbContext dbContext) : base(dbContext)
+         public PersonRepository(CustomDbContext dbContext) : base(dbContext)
         {
         }
     }

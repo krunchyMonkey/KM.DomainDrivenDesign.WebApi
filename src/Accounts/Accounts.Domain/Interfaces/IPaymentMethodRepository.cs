@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Interfaces
 {
-    public interface IAccountService
+    public interface IPaymentMethodRepository: IRepository<PaymentMethod>
     {
-        Account GetAccountById(Guid guid); 
     }
 }

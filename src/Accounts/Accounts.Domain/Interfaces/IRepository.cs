@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Interfaces
 {
-    public interface IRepository
+    public interface IRepository<T> where T: IEntity
     {
-        IEntity GetById(object id);
-        IList<IEntity> GetAll();
-        void Add(IEntity entity);
+        T GetById(object id);
+        IList<T> GetAll();
+        IQueryable<T> Query();
+        void Add(T entity);
+        void Rollback();
+        void Commit();
+        void Dispose();
+
     }
 }

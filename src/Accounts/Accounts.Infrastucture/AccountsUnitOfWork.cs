@@ -6,66 +6,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Accounts.Infrastucture
 {
-    public class AccountsOfWork : IUnitOfWork, IDisposable
+    public class AccountsUnitOfWork : IAccountUnitOfWork
     {
-        private readonly CustomDbContext _dbContext;
-        private bool _disposed;
+        public IRepository<Account> AccountRepository => _accountRespository.Value;
+        public IRepository<Person> PersonRepository => _personRespository.Value;
+        public IRepository<PaymentMethod> PaymentMethodRepository => _paymentMethodRepository.Value;
 
-        public AccountsOfWork(
-            CustomDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly Lazy<IRepository<Account>> _accountRespository;
+        private readonly Lazy<IRepository<Person>> _personRespository;
+        private readonly Lazy<IRepository<PaymentMethod>> _paymentMethodRepository;
 
-        public void Commit()
+        public AccountsUnitOfWork(
+            Lazy<IRepository<Account>> accoutRepository,
+            Lazy<IRepository<Person>> personRepositoy,
+            Lazy<IRepository<PaymentMethod>> paymentMethodRepository)
         {
-            _dbContext.SaveChanges();
-        }
+            _accountRespository = accoutRepository;
+            _personRespository = personRepositoy;
+            _paymentMethodRepository = paymentMethodRepository;
 
-        public void Rollback()
-        {
-            foreach (var entry in _dbContext.ChangeTracker.Entries())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.State = EntityState.Detached;
-                        break;
-                }
-            }
-        }
-        public IRepository Repository<T>() where T : IEntity
-        {
-            var type = Activator.CreateInstance(typeof(T));
-
-            switch (type)
-            {
-                case Account:
-                    return new AccountRepository(_dbContext);
-                case PaymentMethod:
-                    return new PaymentMethodRepository(_dbContext);
-                case Person:
-                    return new PersonRepository(_dbContext);
-                    default: throw new Exception("Unsupported Entity Type");
-            }
         }
 
-        private bool disposed = false;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+
     }
 }
