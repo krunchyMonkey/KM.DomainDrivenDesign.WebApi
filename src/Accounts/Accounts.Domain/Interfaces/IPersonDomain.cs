@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Interfaces
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IPersonDomain
     {
-        void Commit();
-        void Rollback();
-        IRepository Repository<T>() where T : IEntity;
     }
 }

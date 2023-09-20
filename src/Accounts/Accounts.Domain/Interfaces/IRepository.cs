@@ -9,8 +9,8 @@ namespace Accounts.Domain.Interfaces
 {
     public interface IRepository
     {
-        T GetById<T>(object id ) where T: IEntity;
-        IList<T> GetAll<T>() where T : IEntity;
-        void Add<T>(T entity) where T : IEntity;
+        IEntity GetById(object id);
+        IList<IEntity> GetAll();
+        void Add(IEntity entity);
     }
 }

@@ -34,16 +34,19 @@ namespace Accounts.Infrastucture
                 }
             }
         }
-        public IRepository Repository() where T : IEntity
+        public IRepository Repository<T>() where T : IEntity
         {
-            T? type = default(T);
+            var type = Activator.CreateInstance(typeof(T));
 
-            
             switch (type)
             {
-                case Account account:
+                case Account:
                     return new AccountRepository(_dbContext);
-                case 
+                case PaymentMethod:
+                    return new PaymentMethodRepository(_dbContext);
+                case Person:
+                    return new PersonRepository(_dbContext);
+                    default: throw new Exception("Unsupported Entity Type");
             }
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
-    public abstract class Repository<T> where T : IEntity
+    public abstract class Repository<T>: IRepository
     {
         private readonly CustomDbContext _dbContext;
         private readonly DbSet<IEntity> _dbSet;
@@ -31,7 +31,7 @@ namespace Accounts.Infrastucture.Repository
             return _dbSet.ToList();
         }
 
-        public void Add(T entity)
+        public void Add(IEntity entity)
         {
             _dbSet.Add(entity);
         }
