@@ -12,5 +12,9 @@ namespace Accounts.Domain.Interfaces
         IRepository<Account> AccountRepository { get; }
         IRepository<Person> PersonRepository { get; }
         IRepository<PaymentMethod> PaymentMethodRepository { get; }
+        
+        void Rollback();
+        void Commit();
+        void Dispose();
     }
 }

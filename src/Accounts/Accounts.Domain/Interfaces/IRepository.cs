@@ -13,9 +13,5 @@ namespace Accounts.Domain.Interfaces
         IList<T> GetAll();
         IQueryable<T> Query();
         void Add(T entity);
-        void Rollback();
-        void Commit();
-        void Dispose();
-
     }
 }

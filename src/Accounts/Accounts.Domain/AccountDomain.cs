@@ -15,7 +15,7 @@ namespace Accounts.Domain
 
         public AccountDomain(IAccountUnitOfWork unitOfWork) 
         {
-            _accountRepsitory = unitOfWork.AccountRepository; ;
+            _accountRepsitory = unitOfWork.AccountRepository;
         }
 
         public Account GetAccountById(Guid id)

@@ -8,25 +8,73 @@ namespace Accounts.Infrastucture
 {
     public class AccountsUnitOfWork : IAccountUnitOfWork
     {
-        public IRepository<Account> AccountRepository => _accountRespository.Value;
-        public IRepository<Person> PersonRepository => _personRespository.Value;
-        public IRepository<PaymentMethod> PaymentMethodRepository => _paymentMethodRepository.Value;
 
-        private readonly Lazy<IRepository<Account>> _accountRespository;
-        private readonly Lazy<IRepository<Person>> _personRespository;
-        private readonly Lazy<IRepository<PaymentMethod>> _paymentMethodRepository;
-
-        public AccountsUnitOfWork(
-            Lazy<IRepository<Account>> accoutRepository,
-            Lazy<IRepository<Person>> personRepositoy,
-            Lazy<IRepository<PaymentMethod>> paymentMethodRepository)
+        public IRepository<Account> AccountRepository
         {
-            _accountRespository = accoutRepository;
-            _personRespository = personRepositoy;
-            _paymentMethodRepository = paymentMethodRepository;
-
+            get
+            {
+                return new AccountRepository(_customDbContext);
+            }
+        }
+        public IRepository<Person> PersonRepository
+        {
+            get
+            {
+                return new PersonRepository(_customDbContext);
+            }
+        }
+        public IRepository<PaymentMethod> PaymentMethodRepository
+        {
+            get
+            {
+                return new PaymentMethodRepository(_customDbContext);
+            }
         }
 
+        private readonly CustomDbContext _customDbContext;
 
+        public AccountsUnitOfWork(
+            CustomDbContext customDbContext)
+        {
+            _customDbContext = customDbContext;
+        }
+
+        public void Commit()
+        {
+            _customDbContext.SaveChanges();
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _customDbContext.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void Rollback()
+        {
+            foreach (var entry in _customDbContext.ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                }
+            }
+        }
     }
 }
