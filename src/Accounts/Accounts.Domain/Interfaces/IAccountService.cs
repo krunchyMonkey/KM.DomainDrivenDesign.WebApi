@@ -9,6 +9,7 @@ namespace Accounts.Domain.Interfaces
 {
     public interface IAccountService
     {
-        Account GetAccountById(Guid guid); 
+       Task<Account> GetAccountById(Guid guid);
+       Task<Account> CreateAccountAsync(Account account);
     }
 }

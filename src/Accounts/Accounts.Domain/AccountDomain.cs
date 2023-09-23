@@ -21,11 +21,11 @@ namespace Accounts.Domain
 
             var accountRepo = _accountUnitOfWork.AccountRepository;
 
-            accountRepo.Add(account);
+            await accountRepo.Add(account);
 
             int recordCount = await _accountUnitOfWork.Commit();
 
-            if (recordCount == 1)
+            if (recordCount > 0)
             {
                 return await GetAccountById(accountId);
             }

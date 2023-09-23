@@ -21,5 +21,10 @@ namespace Accounts.Domain.Services
         {
             return await _accountDomain.GetAccountById(guid);
         }
+
+        public async Task<Account> CreateAccountAsync(Account account) 
+        {
+            return await _accountDomain.CreateAccount(account);
+        }
     }
 }
