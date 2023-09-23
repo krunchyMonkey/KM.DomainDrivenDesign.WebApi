@@ -9,22 +9,42 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain
 {
-    public class AccountDomain : IAccountDomain
+    public class AccountDomain : GenericDomain, IAccountDomain
     {
-        private readonly IRepository<Account> _accountRepsitory;
+        public AccountDomain(IAccountUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public AccountDomain(IAccountUnitOfWork unitOfWork) 
+        public async Task<Account> CreateAccount(Account account)
         {
-            _accountRepsitory = unitOfWork.AccountRepository;
+            var accountId = Guid.NewGuid();
+
+            account.Id = accountId;
+
+            var accountRepo = _accountUnitOfWork.AccountRepository;
+
+            accountRepo.Add(account);
+
+            int recordCount = await _accountUnitOfWork.Commit();
+
+            if (recordCount == 1)
+            {
+                return await GetAccountById(accountId);
+            }
+            else 
+            {
+                throw new Exception($"Record No Created: Number of accounts created: {recordCount}");
+            }
         }
 
-        public Account GetAccountById(Guid id)
+        public async Task<Account> GetAccountById(Guid id)
         {
-            var results = _accountRepsitory.Query().Include(t => t.PaymentMethods)
+            var accountRepo = _accountUnitOfWork.AccountRepository;
+
+            var results = await accountRepo.Query().Include(t => t.PaymentMethods)
                 .Include(t => t.People)
-                .Where(t => t.Id == id).SingleOrDefault();
+                .Where(t => t.Id == id).SingleAsync();
 
             return results;
         }
+
     }
 }

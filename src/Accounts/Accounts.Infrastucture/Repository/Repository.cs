@@ -1,6 +1,7 @@
 ﻿using Accounts.Domain.Interfaces;
 using Accounts.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 
@@ -16,9 +17,9 @@ namespace Accounts.Infrastucture.Repository
         private readonly CustomDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
 
-        public TEntity GetById(object id)
+        public async Task<TEntity> GetById(object id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
 
         public Repository(CustomDbContext dbContext)
@@ -27,14 +28,14 @@ namespace Accounts.Infrastucture.Repository
             _dbSet = _dbContext.Set<TEntity>();
         }
 
-        public IList<TEntity> GetAll()
+        public async Task<IList<TEntity>> GetAll()
         {
-            return _dbSet.ToList();
+            return await _dbSet.ToListAsync();
         }
 
-        public void Add(TEntity entity)
+        public async Task Add(TEntity entity)
         {
-            _dbSet.Add(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public IQueryable<TEntity> Query() 

@@ -9,9 +9,9 @@ namespace Accounts.Domain.Interfaces
 {
     public interface IRepository<T> where T: IEntity
     {
-        T GetById(object id);
-        IList<T> GetAll();
+        Task<T> GetById(object id);
+        Task<IList<T>> GetAll();
         IQueryable<T> Query();
-        void Add(T entity);
+        Task Add(T entity);
     }
 }

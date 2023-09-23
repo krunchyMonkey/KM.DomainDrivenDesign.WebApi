@@ -39,28 +39,28 @@ namespace Accounts.Infrastucture
             _customDbContext = customDbContext;
         }
 
-        public void Commit()
+        public Task<int> Commit()
         {
-            _customDbContext.SaveChanges();
+            return _customDbContext.SaveChangesAsync();
         }
 
         private bool disposed = false;
 
-        protected virtual void Dispose(bool disposing)
+        protected async virtual Task Dispose(bool disposing)
         {
             if (!this.disposed)
             {
                 if (disposing)
                 {
-                    _customDbContext.Dispose();
+                    await _customDbContext.DisposeAsync();
                 }
             }
             this.disposed = true;
         }
 
-        public void Dispose()
+        public async Task Dispose()
         {
-            Dispose(true);
+            await Dispose(true);
             GC.SuppressFinalize(this);
         }
 

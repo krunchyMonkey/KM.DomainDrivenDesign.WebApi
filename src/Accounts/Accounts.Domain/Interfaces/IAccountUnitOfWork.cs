@@ -14,7 +14,7 @@ namespace Accounts.Domain.Interfaces
         IRepository<PaymentMethod> PaymentMethodRepository { get; }
         
         void Rollback();
-        void Commit();
-        void Dispose();
+        Task<int> Commit();
+        Task Dispose();
     }
 }

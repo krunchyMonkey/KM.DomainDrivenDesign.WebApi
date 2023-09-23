@@ -17,9 +17,9 @@ namespace Accounts.Domain.Services
             _accountDomain = accountDomain;
         }
 
-        public Account GetAccountById(Guid guid)
+        public async Task<Account> GetAccountById(Guid guid)
         {
-            return _accountDomain.GetAccountById(guid);
+            return await _accountDomain.GetAccountById(guid);
         }
     }
 }
