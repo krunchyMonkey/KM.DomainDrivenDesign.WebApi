@@ -11,15 +11,21 @@ namespace Accounts.WebApi.Controllers
     {
         private readonly IAccountService _accountService;
 
-        public AccountsController(IAccountService accountService) 
+        public AccountsController(IAccountService accountService)
         {
-            _accountService = accountService;    
+            _accountService = accountService;
         }
 
         [HttpGet(Name = "GetAccountById")]
-        public async Task<Account> Get(Guid guid) 
+        public async Task<Account> Get(Guid guid)
         {
             return await _accountService.GetAccountById(guid);
+        }
+
+        [HttpPost(Name = "PostPaymentMethod")]
+        public async Task<Account> Post(Account account) 
+        {
+            return await _accountService.CreateAccountAsync(account);
         }
 
         
