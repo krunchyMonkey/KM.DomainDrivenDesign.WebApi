@@ -31,10 +31,10 @@ namespace Accounts.Infrastucture
             }
         }
 
-        private readonly CustomDbContext _customDbContext;
+        private readonly KrunchypaymentsContext _customDbContext;
 
         public AccountsUnitOfWork(
-            CustomDbContext customDbContext)
+            KrunchypaymentsContext customDbContext)
         {
             _customDbContext = customDbContext;
         }

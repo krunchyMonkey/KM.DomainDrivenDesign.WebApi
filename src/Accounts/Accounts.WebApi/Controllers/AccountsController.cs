@@ -17,9 +17,9 @@ namespace Accounts.WebApi.Controllers
         }
 
         [HttpGet(Name = "GetAccountById")]
-        public Account Get(Guid guid) 
+        public async Task<Account> Get(Guid guid) 
         {
-            return _accountService.GetAccountById(guid);
+            return await _accountService.GetAccountById(guid);
         }
 
         

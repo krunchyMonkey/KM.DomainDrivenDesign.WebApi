@@ -14,7 +14,7 @@ namespace Accounts.Infrastucture.Repository
     public abstract class Repository<TEntity> where TEntity : 
         class, IEntity
     {
-        private readonly CustomDbContext _dbContext;
+        private readonly KrunchypaymentsContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
 
         public async Task<TEntity> GetById(object id)
@@ -22,7 +22,7 @@ namespace Accounts.Infrastucture.Repository
             return await _dbSet.FindAsync(id);
         }
 
-        public Repository(CustomDbContext dbContext)
+        public Repository(KrunchypaymentsContext dbContext)
         {
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<TEntity>();

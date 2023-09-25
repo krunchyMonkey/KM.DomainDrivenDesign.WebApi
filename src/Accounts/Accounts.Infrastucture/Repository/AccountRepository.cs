@@ -11,7 +11,7 @@ namespace Accounts.Infrastucture.Repository
 {
     public class AccountRepository : Repository<Account>, IAccountRespository
     {
-        public AccountRepository(CustomDbContext dbContext) : base(dbContext)
+        public AccountRepository(KrunchypaymentsContext dbContext) : base(dbContext)
         {
         }
     }

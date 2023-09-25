@@ -30,7 +30,7 @@ namespace Accounts.WebApi
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             
-            services.AddDbContextPool<CustomDbContext>(o => 
+            services.AddDbContextPool<KrunchypaymentsContext>(o => 
             o.UseSqlServer("Server=.,1433;Database=krunchypayments;User Id=SA;Password=Arcsin27$;TrustServerCertificate=True;"));
 
             services.AddScoped<IRepository<Account>, AccountRepository>()
