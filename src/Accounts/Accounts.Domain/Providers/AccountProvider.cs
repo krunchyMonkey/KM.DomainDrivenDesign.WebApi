@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Domain.Services
+namespace Accounts.Domain.Providers
 {
-    public class AccountService: IAccountService
+    public class AccountProvider: IAccountProvider
     {
         private readonly IAccountDomain _accountDomain;
 
-        public AccountService(IAccountDomain accountDomain) 
+        public AccountProvider(IAccountDomain accountDomain) 
         {
             _accountDomain = accountDomain;
         }

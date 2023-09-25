@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain.Interfaces
 {
-    public interface IAccountService
+    public interface IAccountProvider
     {
        Task<Account> GetAccountById(Guid guid);
        Task<Account> CreateAccountAsync(Account account);

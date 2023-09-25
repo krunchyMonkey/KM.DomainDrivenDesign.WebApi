@@ -1,7 +1,7 @@
 ﻿using Accounts.Domain;
 using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
-using Accounts.Domain.Services;
+using Accounts.Domain.Providers;
 using Accounts.Infrastucture;
 using Accounts.Infrastucture.Context;
 using Accounts.Infrastucture.Repository;
@@ -44,7 +44,7 @@ namespace Accounts.WebApi
 
             services.AddScoped<IAccountUnitOfWork, AccountsUnitOfWork>();
             services.AddScoped<IAccountDomain, AccountDomain>();
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountProvider, AccountProvider>();
 
             services.AddHttpContextAccessor();
         }

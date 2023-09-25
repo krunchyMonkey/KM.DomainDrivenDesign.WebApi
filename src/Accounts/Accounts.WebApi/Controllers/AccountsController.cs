@@ -9,9 +9,9 @@ namespace Accounts.WebApi.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountProvider _accountService;
 
-        public AccountsController(IAccountService accountService)
+        public AccountsController(IAccountProvider accountService)
         {
             _accountService = accountService;
         }
