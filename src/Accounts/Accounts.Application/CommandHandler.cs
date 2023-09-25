@@ -1,4 +1,5 @@
-﻿using Accounts.Application.ViewModels;
+﻿using Accounts.Infrastucture.ViewModel;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ namespace Accounts.Application
                                                  IRequest<AccountsResponse<U>>
     {
         protected int _httpSuccessCode = 200;
+        protected readonly IMapper Mapper;
+
+        public CommandHandler(IMapper mapper) 
+        {
+            Mapper = mapper;
+        }
 
         public abstract Task<AccountsResponse<U>> Handle(T request,
                                                               CancellationToken cancellationToken);

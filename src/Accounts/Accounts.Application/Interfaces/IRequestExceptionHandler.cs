@@ -13,4 +13,5 @@ namespace Accounts.Application.Interfaces
     {
         Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state, CancellationToken cancellationToken);
     }
+
 }

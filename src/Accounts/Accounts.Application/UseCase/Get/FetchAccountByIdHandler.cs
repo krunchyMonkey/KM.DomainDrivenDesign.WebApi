@@ -1,10 +1,8 @@
-﻿using Accounts.Application.ViewModels;
-using Accounts.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Accounts.Domain.Interfaces;
+using Accounts.Domain.Models;
+using Accounts.Infrastucture.ViewModel;
+using Accounts.Infrastucture.ViewModel.Accounts;
+using AutoMapper;
 
 namespace Accounts.Application.UseCase.Get
 {
@@ -14,7 +12,9 @@ namespace Accounts.Application.UseCase.Get
     {
         private readonly IAccountProvider _accountProvider;
 
-        public FetchAccountByIdHandler(IAccountProvider accountProvider) 
+        public FetchAccountByIdHandler(
+            IAccountProvider accountProvider,
+            IMapper mapper) : base(mapper) 
         {
             _accountProvider = accountProvider;
         }
@@ -23,7 +23,9 @@ namespace Accounts.Application.UseCase.Get
         {
             var response = await _accountProvider.GetAccountById(request.AccountId);
 
-            return null;
+            var responseVm = Mapper.Map<Account, AccountVm>(response);
+
+            return CreateAccountsResponse(responseVm);
         }
     }
 }

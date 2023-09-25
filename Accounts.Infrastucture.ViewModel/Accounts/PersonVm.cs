@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Application.ViewModels
+namespace Accounts.Infrastucture.ViewModel.Accounts
 {
     public class PersonVm
     {
-        public Guid? Id { get; set; }
+        public Guid Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int? Age { get; set; }

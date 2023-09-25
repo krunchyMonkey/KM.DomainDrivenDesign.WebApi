@@ -1,4 +1,5 @@
-﻿using Accounts.Application.ViewModels;
+﻿using Accounts.Infrastucture.ViewModel;
+using Accounts.Infrastucture.ViewModel.Accounts;
 using MediatR;
 using System;
 using System.Collections.Generic;
