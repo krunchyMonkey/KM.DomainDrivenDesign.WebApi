@@ -1,8 +1,10 @@
-﻿using Accounts.Application.UseCase.Get;
+﻿using Accounts.Application.UseCase.Create;
+using Accounts.Application.UseCase.Get;
 using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
 using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
+using Accounts.Infrastucture.ViewModel.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,12 +35,13 @@ namespace Accounts.WebApi.Controllers
             });
         }
 
-        //[HttpPost(Name = "PostPaymentMethod")]
-        //public async Task<Account> Post(Account account) 
-        //{
-        //    return await _accountService.CreateAccountAsync(account);
-        //}
-
-        
+        [HttpPost(Name = "PostPaymentMethod")]
+        public async Task<AccountsResponse<AccountVm>> Post(CreateAccountRequest request)
+        {
+            return await Send(new CreateAccount
+            {
+                CreateAccountRequest = request
+            });
+        }
     }
 }
