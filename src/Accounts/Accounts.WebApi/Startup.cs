@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Accounts.Application;
 using MediatR.Pipeline;
 using MediatR;
+using System.Reflection;
 
 namespace Accounts.WebApi
 {
@@ -23,6 +24,7 @@ namespace Accounts.WebApi
             // Services
 
             services.AddMvc();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
             services.AddControllers();
 

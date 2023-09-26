@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Accounts.Infrastucture\Accounts.Infrastucture.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>

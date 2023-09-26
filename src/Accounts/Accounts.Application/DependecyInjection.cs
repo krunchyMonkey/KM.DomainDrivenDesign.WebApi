@@ -1,6 +1,7 @@
 ﻿using Accounts.Domain.Interfaces;
 using Accounts.Domain.Providers;
 using Accounts.Domain;
+using MediatR.Pipeline;
 using Accounts.Infrastucture.Mapping.Profiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,6 @@ using MediatR;
 using Accounts.Application.UseCase.Get;
 using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
-using Accounts.Application.Interfaces;
 using System.Reflection;
 
 namespace Accounts.Application
@@ -26,7 +26,7 @@ namespace Accounts.Application
         public static IServiceCollection AddAccountsServices(this IServiceCollection services, IConfiguration configuration) 
         {
             services.AddAutoMapper(typeof(AccountsProfile));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+         
             
             services.AddDbContextPool<KrunchypaymentsContext>(o =>
                  o.UseSqlServer("Server=.,1433;Database=krunchypayments;User Id=SA;Password=Arcsin27$;TrustServerCertificate=True;"));
@@ -39,10 +39,10 @@ namespace Accounts.Application
                 AccountsResponse<AccountVm>>,
                 FetchAccountByIdHandler>();
 
-            //services.AddTransient(typeof(IRequestExceptionHandler<FetchAccountById,
-            //                                                   AccountsResponse<AccountVm>,
-            //                                                   Exception>),
-            //                                                   typeof(FetchAccountByIdExceptionHandler));
+            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountById,
+                                                               AccountsResponse<AccountVm>,
+                                                               Exception>),
+                                                               typeof(FetchAccountByIdExceptionHandler));
 
             return services;
         }
