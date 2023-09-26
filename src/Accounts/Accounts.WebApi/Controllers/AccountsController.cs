@@ -35,7 +35,7 @@ namespace Accounts.WebApi.Controllers
             });
         }
 
-        [HttpPost(Name = "PostPaymentMethod")]
+        [HttpPost(Name = "CreateAccount")]
         public async Task<AccountsResponse<AccountVm>> Post(CreateAccountRequest request)
         {
             return await Send(new CreateAccount
