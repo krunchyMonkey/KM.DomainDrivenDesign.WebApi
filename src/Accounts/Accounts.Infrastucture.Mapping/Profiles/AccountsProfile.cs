@@ -12,19 +12,25 @@ namespace Accounts.Infrastucture.Mapping.Profiles
 {
     public class AccountsProfile : Profile
     {
-        public AccountsProfile() 
+        public AccountsProfile()
         {
             Build();
         }
 
-        public void Build() 
+        public void Build()
+        {
+            BuildCore();
+            BuildCommandReqests();
+        }
+
+        public void BuildCore() 
         {
             CreateMap<Account, AccountVm>();
             CreateMap<PaymentMethod, PaymentMethodVm>();
             CreateMap<Person, PersonVm>();
         }
 
-        public void CommandReqests() 
+        public void BuildCommandReqests() 
         {
             CreateMap<CreateAccountRequest, Person>()
                     .ForMember(destination => destination.Id, source => source.MapFrom(s => s.PersonId))

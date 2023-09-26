@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Accounts.Infrastucture.ViewModel\Accounts.Infrastucture.ViewModel.csproj" />
     <ProjectReference Include="..\Accounts.Domain\Accounts.Domain.csproj" />
     <ProjectReference Include="..\Accounts.Infrastucture.Mapping\Accounts.Infrastucture.Mapping.csproj" />
+    <ProjectReference Include="..\Accounts.Infrastucture.ViewModel\Accounts.Infrastucture.ViewModel.csproj" />
     <ProjectReference Include="..\Accounts.Infrastucture\Accounts.Infrastucture.csproj" />
   </ItemGroup>
 
