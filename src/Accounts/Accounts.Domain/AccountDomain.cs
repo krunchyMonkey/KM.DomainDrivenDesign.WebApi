@@ -1,6 +1,7 @@
 ﻿using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Accounts.Domain
 {
@@ -28,6 +29,20 @@ namespace Accounts.Domain
             {
                 throw new Exception($"Record No Created: Number of accounts created: {recordCount}");
             }
+        }
+
+        public async Task<Account> GetAccountByPerson(Person person) 
+        {
+            var accountRepo = _accountUnitOfWork.AccountRepository;
+
+            var result = await accountRepo.Query()
+                .Include(t => t.PaymentMethods)
+                .Include(t => t.People)
+                .Where(t => t.People.Contains(person))
+                .SingleOrDefaultAsync();
+
+            return result;
+  
         }
 
         public async Task<Account> GetAccountById(Guid id)

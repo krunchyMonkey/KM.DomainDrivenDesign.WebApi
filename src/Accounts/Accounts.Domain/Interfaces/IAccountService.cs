@@ -11,5 +11,6 @@ namespace Accounts.Domain.Interfaces
     {
        Task<Account> GetAccountById(Guid guid);
        Task<Account> CreateAccountAsync(Account account);
+        Task<Account> GetAccountByPersonId(Guid personId);
     }
 }

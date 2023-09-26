@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Accounts.Infrastucture.ViewModel;
+using System.Net;
 
 namespace Accounts.Application
 {
@@ -76,17 +77,22 @@ namespace Accounts.Application
             switch (exception)
             {
                 case UnauthorizedAccessException uae:
-                    errorMessage = $"{_errorMessagePrefix} {uae.Message}.";
+                    errorMessage = $"{_errorMessagePrefix} : {uae.Message}.";
                     state.Response.HttpResultCode = _httpUnauthorizedErrorCode;
                     break;
                 case NotImplementedException nix:
-                    errorMessage = $"{_errorMessagePrefix} {nix.Message}.";
+                    errorMessage = $"{_errorMessagePrefix} : {nix.Message}.";
                     state.Response.HttpResultCode = _httpInternalError;
                     break;
                 case DbException dbex:
-                    errorMessage = $"{_errorMessagePrefix}{dbex.Message}.";
+                    errorMessage = $"{_errorMessagePrefix} : {dbex.Message}.";
                     customErrorMessage = dbex.Message;
                     state.Response.HttpResultCode = (int)dbex.ErrorCode;
+                    break;
+                case ArgumentException arg:
+                    errorMessage = $"{_errorMessagePrefix} : {arg.Message}.";
+                    state.Response.HttpResultCode = (int)HttpStatusCode.Conflict;
+                    customErrorMessage = errorMessage;
                     break;
                 case Exception ex:
                     errorMessage = $"{_errorMessagePrefix} {ex.Message}.";

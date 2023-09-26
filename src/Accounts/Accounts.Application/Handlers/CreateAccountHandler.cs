@@ -1,4 +1,5 @@
-﻿using Accounts.Application.UseCase.Get;
+﻿using Accounts.Application.UseCase.Create;
+using Accounts.Application.UseCase.Get;
 using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
 using Accounts.Infrastucture.ViewModel;
@@ -11,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Application.UseCase.Create
+namespace Accounts.Application.Handlers
 {
     public class CreateAccountHandler :
         CommandHandler<CreateAccount,
@@ -34,11 +35,12 @@ namespace Accounts.Application.UseCase.Create
 
             accountRequest.People = new List<Person>()
             {
-            new Person
-            {
-                Id = createAccountRequest.PersonId
-            }
+                new Person
+                {
+                    Id = createAccountRequest.PersonId
+                }
             };
+
             var response = await _accountProvider.CreateAccountAsync(accountRequest);
 
             var accountVm = Mapper.Map<Account, AccountVm>(response);

@@ -1,20 +1,21 @@
-﻿using Accounts.Domain.Interfaces;
+﻿using Accounts.Application.UseCase.Get;
+using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
 using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
 using AutoMapper;
 
-namespace Accounts.Application.UseCase.Get
+namespace Accounts.Application.Handlers
 {
-    public class FetchAccountByIdHandler : 
-        CommandHandler<FetchAccountById, 
+    public class FetchAccountByIdHandler :
+        CommandHandler<FetchAccountById,
         AccountVm>
     {
         private readonly IAccountProvider _accountProvider;
 
         public FetchAccountByIdHandler(
             IAccountProvider accountProvider,
-            IMapper mapper) : base(mapper) 
+            IMapper mapper) : base(mapper)
         {
             _accountProvider = accountProvider;
         }

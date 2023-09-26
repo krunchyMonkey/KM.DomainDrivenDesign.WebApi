@@ -1,10 +1,5 @@
 ﻿using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Accounts.Domain.Providers
 {
@@ -26,6 +21,15 @@ namespace Accounts.Domain.Providers
             return await _accountDomain.GetAccountById(guid);
         }
 
+        public async Task<Account> GetAccountByPersonId(Guid personId) 
+        {
+            var person = await _personDomain.GetPersonById(personId);
+
+            var account = await _accountDomain.GetAccountByPerson(person);
+
+            return account;
+        }
+
         public async Task<Account> CreateAccountAsync(Account account) 
         {
             Person? person;
@@ -43,6 +47,13 @@ namespace Accounts.Domain.Providers
                 if (person == null) 
                 {
                     throw new ArgumentException($"Person with Id: {personId} does not exist");
+                }
+
+                var existingAccount = await _accountDomain.GetAccountByPerson(person);
+
+                if (existingAccount != null) 
+                {
+                    throw new ArgumentException("Person Already Attached to an Account");
                 }
             }
             else 

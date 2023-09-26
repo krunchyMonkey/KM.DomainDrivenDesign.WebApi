@@ -19,6 +19,7 @@ using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
 using System.Reflection;
 using Accounts.Application.UseCase.Create;
+using Accounts.Application.Handlers;
 
 namespace Accounts.Application
 {
@@ -41,6 +42,10 @@ namespace Accounts.Application
                 AccountsResponse<AccountVm>>,
                 FetchAccountByIdHandler>();
 
+            services.AddTransient<IRequestHandler<FetchAccountByPersonId,
+                AccountsResponse<AccountVm>>,
+                FetchAccountByPersonIdHandler>();
+
             services.AddTransient<IRequestHandler<CreateAccount,
                 AccountsResponse<AccountVm>>,
                 CreateAccountHandler>();
@@ -49,6 +54,11 @@ namespace Accounts.Application
                                                                AccountsResponse<AccountVm>,
                                                                Exception>),
                                                                typeof(FetchAccountByIdExceptionHandler));
+
+            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountByPersonId,
+                                                   AccountsResponse<AccountVm>,
+                                                   Exception>),
+                                                   typeof(FetchAccountByPersonIdExceptionHandler));
 
             services.AddScoped(typeof(IRequestExceptionHandler<CreateAccount,
                                                    AccountsResponse<AccountVm>,

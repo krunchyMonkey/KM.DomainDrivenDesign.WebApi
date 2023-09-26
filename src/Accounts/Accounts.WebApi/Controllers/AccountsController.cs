@@ -26,17 +26,26 @@ namespace Accounts.WebApi.Controllers
         
    
 
-        [HttpGet(Name = "GetAccountById")]
-        public async Task<AccountsResponse<AccountVm>> Get(Guid guid)
+        [HttpGet("Account/{Id}")]
+        public async Task<AccountsResponse<AccountVm>> FetchAccountById(Guid Id)
         {
             return await Send(new FetchAccountById
             {
-                AccountId = guid,
+                AccountId = Id,
+            });
+        }
+
+        [HttpGet("Persons/Person/{Id}")]
+        public async Task<AccountsResponse<AccountVm>> FetchAccountByPersonId(Guid Id)
+        {
+            return await Send(new FetchAccountByPersonId
+            {
+                PersonId = Id,
             });
         }
 
         [HttpPost(Name = "CreateAccount")]
-        public async Task<AccountsResponse<AccountVm>> Post(CreateAccountRequest request)
+        public async Task<AccountsResponse<AccountVm>> CreateAccount(CreateAccountRequest request)
         {
             return await Send(new CreateAccount
             {

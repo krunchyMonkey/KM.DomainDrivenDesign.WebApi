@@ -1,4 +1,5 @@
-﻿using Accounts.Infrastucture.ViewModel;
+﻿using Accounts.Application.UseCase.Get;
+using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Application.UseCase.Get
+namespace Accounts.Application.Handlers
 {
     public class FetchAccountByIdExceptionHandler :
         BaseExceptionHandler<FetchAccountById,
@@ -17,10 +18,8 @@ namespace Accounts.Application.UseCase.Get
         >
     {
         public FetchAccountByIdExceptionHandler(
-            ILogger<FetchAccountByIdExceptionHandler> logger ) : base( logger ) 
+            ILogger<FetchAccountByIdExceptionHandler> logger) : base(logger)
         {
         }
-             
-
     }
 }
