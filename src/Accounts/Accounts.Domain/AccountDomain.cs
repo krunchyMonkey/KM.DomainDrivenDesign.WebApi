@@ -34,9 +34,11 @@ namespace Accounts.Domain
         {
             var accountRepo = _accountUnitOfWork.AccountRepository;
 
-            var results = await accountRepo.Query().Include(t => t.PaymentMethods)
+            var results = await accountRepo.Query()
+                .Include(t => t.PaymentMethods)
                 .Include(t => t.People)
-                .Where(t => t.Id == id).SingleAsync();
+                .Where(t => t.Id == id)
+                .SingleAsync();
 
             return results;
         }
