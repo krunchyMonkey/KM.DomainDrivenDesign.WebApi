@@ -18,6 +18,7 @@ using Accounts.Application.UseCase.Get;
 using Accounts.Infrastucture.ViewModel;
 using Accounts.Infrastucture.ViewModel.Accounts;
 using System.Reflection;
+using Accounts.Application.UseCase.Create;
 
 namespace Accounts.Application
 {
@@ -32,6 +33,7 @@ namespace Accounts.Application
                  o.UseSqlServer("Server=.,1433;Database=krunchypayments;User Id=SA;Password=Arcsin27$;TrustServerCertificate=True;"));
 
             services.AddScoped<IAccountUnitOfWork, AccountsUnitOfWork>();
+            services.AddScoped<IPersonDomain, PersonDomain>();
             services.AddScoped<IAccountDomain, AccountDomain>();
             services.AddScoped<IAccountProvider, AccountProvider>();
 
@@ -39,10 +41,19 @@ namespace Accounts.Application
                 AccountsResponse<AccountVm>>,
                 FetchAccountByIdHandler>();
 
+            services.AddTransient<IRequestHandler<CreateAccount,
+                AccountsResponse<AccountVm>>,
+                CreateAccountHandler>();
+
             services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountById,
                                                                AccountsResponse<AccountVm>,
                                                                Exception>),
                                                                typeof(FetchAccountByIdExceptionHandler));
+
+            services.AddScoped(typeof(IRequestExceptionHandler<CreateAccount,
+                                                   AccountsResponse<AccountVm>,
+                                                   Exception>),
+                                                   typeof(CreateAccountExceptionHandler));
 
             return services;
         }
