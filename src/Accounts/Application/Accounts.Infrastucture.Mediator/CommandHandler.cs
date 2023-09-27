@@ -1,9 +1,14 @@
 ﻿using Accounts.Application.ViewModel;
 using AutoMapper;
 using MediatR;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Accounts.Application
+namespace Accounts.Application.Mediator
 {
     [ExcludeFromCodeCoverage]
     public abstract class CommandHandler<T, U> : IRequestHandler<T, AccountsResponse<U>> where T :

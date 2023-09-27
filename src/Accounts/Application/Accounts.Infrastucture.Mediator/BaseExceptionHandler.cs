@@ -1,12 +1,17 @@
 ﻿using MediatR.Pipeline;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Accounts.Application.ViewModel;
 using System.Net;
 
-namespace Accounts.Application
+namespace Accounts.Application.Mediator
 {
     [ExcludeFromCodeCoverage]
     public abstract class BaseExceptionHandler<T, U, V, K> : IRequestExceptionHandler<T, U, V>
