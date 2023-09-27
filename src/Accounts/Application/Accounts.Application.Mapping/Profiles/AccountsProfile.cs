@@ -1,12 +1,7 @@
-﻿using Accounts.Domain.Models;
+﻿using Accounts.Domain.Model;
 using Accounts.Application.ViewModel.Accounts;
 using Accounts.Application.ViewModel.Requests;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Accounts.Application.Mapping.Profiles
 {

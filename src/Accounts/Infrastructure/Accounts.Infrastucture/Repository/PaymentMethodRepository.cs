@@ -1,5 +1,6 @@
-﻿using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
+using Accounts.Domain.Model.Interfaces;
 using Accounts.Infrastucture.Context;
 using System;
 using System.Collections.Generic;

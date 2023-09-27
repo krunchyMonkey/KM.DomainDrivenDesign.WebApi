@@ -1,13 +1,6 @@
-﻿using Accounts.Domain.Interfaces;
+﻿using Accounts.Domain.Model.Interfaces;
 using Accounts.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Accounts.Infrastucture.Repository
 {
@@ -38,9 +31,14 @@ namespace Accounts.Infrastucture.Repository
             await _dbSet.AddAsync(entity);
         }
 
-        public IQueryable<TEntity> Query() 
+        public virtual async Task<IQueryable<TEntity>> Query() 
         {
-            return _dbSet.AsQueryable();
+            return await QueryAsync();
+        }
+
+        private Task<IQueryable<TEntity>> QueryAsync() 
+        {
+            return Task.Run(() => _dbSet.AsQueryable());
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Accounts.Domain.Models;
+﻿using Accounts.Domain.Model;
 using Accounts.Domain;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Domain.Interfaces
+namespace Accounts.Domain.Business.Interfaces
 {
     public interface IAccountUnitOfWork
     {

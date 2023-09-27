@@ -24,7 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Accounts.Domain\Accounts.Domain.csproj" />
+    <ProjectReference Include="..\..\Domain\Accounts.Domain.Business\Accounts.Domain.Business.csproj" />
+    <ProjectReference Include="..\..\Domain\Accounts.Domain.Model\Accounts.Domain.Model.csproj" />
   </ItemGroup>
 
 </Project>

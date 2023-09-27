@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Domain.Interfaces
+namespace Accounts.Domain.Model.Interfaces
 {
     public interface IEntity
     {

@@ -1,4 +1,4 @@
-﻿using Accounts.Domain.Models;
+﻿using Accounts.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Accounts.Infrastucture.Context

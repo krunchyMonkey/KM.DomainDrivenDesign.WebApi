@@ -1,11 +1,11 @@
-﻿using Accounts.Domain.Interfaces;
+﻿using Accounts.Domain.Model.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Domain.Models
+namespace Accounts.Domain.Model
 {
     public class Person : IEntity
     {

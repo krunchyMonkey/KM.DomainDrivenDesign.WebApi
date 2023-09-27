@@ -1,4 +1,4 @@
-﻿using Accounts.Domain.Models;
+﻿using Accounts.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ namespace Accounts.Domain.Business.Interfaces
 {
     public interface IAccountDomain
     {
-        Task<Account> GetAccountById(Guid id);
-        Task<Account> CreateAccount(Account account);
-        Task<Account> GetAccountByPerson(Person person);
+        Task<Account?> GetAccountById(Guid id);
+        Task<Account?> CreateAccount(Account account);
+        Task<Account?> GetAccountByPerson(Person person);
     }
 }

@@ -1,15 +1,9 @@
 ﻿using Accounts.Application.Mediator.UseCase.Get;
-using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
 using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Accounts.Application.ViewModel;
 
 namespace Accounts.Application.Mediator.Handlers
 {

@@ -1,6 +1,6 @@
 ﻿using Accounts.Application.Mediator.UseCase.Get;
-using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
 using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using AutoMapper;

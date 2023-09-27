@@ -1,6 +1,5 @@
-﻿using Accounts.Domain.Interfaces;
-using Accounts.Domain.Providers;
-using Accounts.Domain;
+﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Business.Providers;
 using MediatR.Pipeline;
 using Accounts.Application.Mapping.Profiles;
 using Microsoft.Extensions.Configuration;
@@ -12,8 +11,9 @@ using Accounts.Application.Mediator.UseCase.Get;
 using Accounts.Application.Mediator.UseCase.Create;
 using Accounts.Application.Mediator.Handlers;
 using Accounts.Application.ViewModel;
-using Accounts.Infrastucture;
 using Accounts.Application.ViewModel.Accounts;
+using Accounts.Infrastucture;
+using Accounts.Domain.Business;
 
 namespace Accounts.Application.Mediator
 {

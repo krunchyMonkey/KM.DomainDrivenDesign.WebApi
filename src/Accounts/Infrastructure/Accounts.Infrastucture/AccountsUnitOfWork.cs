@@ -1,5 +1,5 @@
-﻿using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
 using Accounts.Infrastucture.Context;
 using Accounts.Infrastucture.Repository;
 using Microsoft.EntityFrameworkCore;

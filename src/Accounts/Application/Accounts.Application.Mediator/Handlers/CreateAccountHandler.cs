@@ -1,13 +1,9 @@
-﻿using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
 using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using Accounts.Application.ViewModel.Requests;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Accounts.Application.Mediator.UseCase.Create;
 
 namespace Accounts.Application.Mediator.Handlers

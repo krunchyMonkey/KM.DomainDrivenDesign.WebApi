@@ -1,5 +1,5 @@
-﻿using Accounts.Domain.Interfaces;
-using Accounts.Domain.Models;
+﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model;
 using Accounts.Infrastucture.Context;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,13 @@ namespace Accounts.Infrastucture.Repository
     {
          public PersonRepository(KrunchypaymentsContext dbContext) : base(dbContext)
         {
+        }
+
+        public override async Task<IQueryable<Person>> Query() 
+        {
+            var result = await base.Query();
+
+            return result;
         }
     }
 }
