@@ -1,4 +1,4 @@
-namespace Accounts.WebApi
+namespace Accounts.Web.ServiceApi
 {
     public class WeatherForecast
     {

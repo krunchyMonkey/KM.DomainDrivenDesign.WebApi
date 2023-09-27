@@ -1,13 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Accounts.Infrastucture;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Accounts.Application;
+﻿using Accounts.Application.Mediator;
 using MediatR.Pipeline;
 using MediatR;
 using System.Reflection;
 
-namespace Accounts.WebApi
+namespace Accounts.Web.ServiceApi
 {
     public class Startup
     {

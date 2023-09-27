@@ -1,5 +1,5 @@
-﻿using Accounts.Application.UseCase.Create;
-using Accounts.Application.UseCase.Get;
+﻿using Accounts.Application.Mediator.UseCase.Create;
+using Accounts.Application.Mediator.UseCase.Get;
 using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
 using Accounts.Application.ViewModel;
@@ -9,7 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Accounts.WebApi.Controllers
+namespace Accounts.Web.ServiceApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
