@@ -2,9 +2,9 @@
 using Accounts.Application.UseCase.Get;
 using Accounts.Domain.Interfaces;
 using Accounts.Domain.Models;
-using Accounts.Infrastucture.ViewModel;
-using Accounts.Infrastucture.ViewModel.Accounts;
-using Accounts.Infrastucture.ViewModel.Requests;
+using Accounts.Application.ViewModel;
+using Accounts.Application.ViewModel.Accounts;
+using Accounts.Application.ViewModel.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
