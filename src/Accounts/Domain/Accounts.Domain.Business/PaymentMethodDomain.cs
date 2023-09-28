@@ -3,7 +3,7 @@ using Accounts.Domain.Model;
 
 namespace Accounts.Domain.Business
 {
-    public class PaymentMethodDomain : GenericDomain, IPaymentMethodDomain
+    public class PaymentMethodDomain : GenericDomain<PaymentMethod>, IPaymentMethodDomain
     {
         public PaymentMethodDomain(IAccountUnitOfWork accountUnitOfWork) : base(accountUnitOfWork) { }
  
@@ -39,6 +39,13 @@ namespace Accounts.Domain.Business
             }
 
             return paymentMethod;
+        }
+
+        public override async Task<IQueryable<PaymentMethod>> Query()
+        {
+            var accountRepo = _accountUnitOfWork.PaymentMethodRepository;
+
+            return await accountRepo.Query();
         }
     }
 }

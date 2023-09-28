@@ -1,4 +1,5 @@
 ﻿using Accounts.Domain.Business.Interfaces;
+using Accounts.Domain.Model.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Accounts.Domain
 {
-    public abstract class GenericDomain
+    public abstract class GenericDomain<T> where T: IEntity
     {
         protected IAccountUnitOfWork _accountUnitOfWork;
 
@@ -16,5 +17,8 @@ namespace Accounts.Domain
             _accountUnitOfWork = accountUnitOfWork;
         
         }
+
+        public abstract Task<IQueryable<T>> Query(); 
+
     }
 }

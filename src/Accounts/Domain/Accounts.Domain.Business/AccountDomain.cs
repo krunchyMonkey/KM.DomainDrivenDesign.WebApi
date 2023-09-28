@@ -1,9 +1,10 @@
 ﻿using Accounts.Domain.Business.Interfaces;
 using Accounts.Domain.Model;
+using Accounts.Domain.Model.Interfaces;
 
 namespace Accounts.Domain.Business
 {
-    public class AccountDomain : GenericDomain, IAccountDomain
+    public class AccountDomain : GenericDomain<Account>, IAccountDomain
     {
         public AccountDomain(IAccountUnitOfWork unitOfWork) : base(unitOfWork) { }
 
@@ -53,5 +54,11 @@ namespace Accounts.Domain.Business
             return accounts.SingleOrDefault();
         }
 
+        public override async Task<IQueryable<Account>> Query()
+        {
+            var accountRepo = _accountUnitOfWork.AccountRepository;
+
+            return await accountRepo.Query();
+        }
     }
 }

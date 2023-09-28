@@ -18,7 +18,14 @@ namespace Accounts.Domain.Business.Providers
 
         public async Task<Account> GetAccountById(Guid guid)
         {
-            return await _accountDomain.GetAccountById(guid);
+            var result =  await _accountDomain.GetAccountById(guid);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException("Account Not Found.");
+            }
+
+            return result;
         }
 
         public async Task<Account> GetAccountByPersonId(Guid personId) 
