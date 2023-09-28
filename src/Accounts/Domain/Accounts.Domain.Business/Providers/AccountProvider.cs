@@ -16,7 +16,7 @@ namespace Accounts.Domain.Business.Providers
             _personDomain = personDomain;
         }
 
-        public async Task<Account> GetAccountById(Guid guid)
+        public async Task<Account?> GetAccountById(Guid guid)
         {
             var result =  await _accountDomain.GetAccountById(guid);
 
@@ -28,16 +28,21 @@ namespace Accounts.Domain.Business.Providers
             return result;
         }
 
-        public async Task<Account> GetAccountByPersonId(Guid personId) 
+        public async Task<Account?> GetAccountByPersonId(Guid personId) 
         {
             var person = await _personDomain.GetPersonById(personId);
+
+            if (person == null) 
+            {
+                throw new KeyNotFoundException($"A Person with the ID: {personId} does not existi");
+            }
 
             var account = await _accountDomain.GetAccountByPerson(person);
 
             return account;
         }
 
-        public async Task<Account> CreateAccountAsync(Account account) 
+        public async Task<Account?> CreateAccountAsync(Account account) 
         {
             Person? person;
 
@@ -46,7 +51,9 @@ namespace Accounts.Domain.Business.Providers
                 throw new ArgumentNullException(nameof(account), "Account cannot be null.");
             }
 
-            if (account.People != null && account.People.Count > 0 && account.People[0]?.Id != null)
+            if (account.People != null 
+                && account.People.Count > 0 
+                && account.People[0]?.Id != null)
             {
                 var personId = account.People[0].Id;
                 person = await _personDomain.GetPersonById(personId);
