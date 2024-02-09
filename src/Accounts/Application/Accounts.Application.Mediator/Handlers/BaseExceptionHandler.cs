@@ -87,7 +87,7 @@ namespace Accounts.Application.Mediator
                 case DbException dbex:
                     errorMessage = $"{_errorMessagePrefix} : {dbex.Message}.";
                     customErrorMessage = dbex.Message;
-                    state.Response.HttpResultCode = (int)dbex.ErrorCode;
+                    state.Response.HttpResultCode = (int) HttpStatusCode.InternalServerError;
                     break;
                 case ArgumentException arg:
                     errorMessage = $"{_errorMessagePrefix} : {arg.Message}.";
