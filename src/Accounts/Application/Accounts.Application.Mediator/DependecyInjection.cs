@@ -14,6 +14,9 @@ using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using Accounts.Infrastucture;
 using Accounts.Domain.Business;
+using Accounts.Application.Mediator.Handlers.CreateAccount;
+using Accounts.Application.Mediator.Handlers.FetchAccountById;
+using Accounts.Application.Mediator.Handlers.FetchAccountByPersonId;
 
 namespace Accounts.Application.Mediator
 {
@@ -31,29 +34,29 @@ namespace Accounts.Application.Mediator
             services.AddScoped<IAccountDomain, AccountDomain>();
             services.AddScoped<IAccountProvider, AccountProvider>();
 
-            services.AddTransient<IRequestHandler<FetchAccountById,
+            services.AddTransient<IRequestHandler<FetchAccountByIdRequest,
                 AccountsResponse<AccountVm>>,
                 FetchAccountByIdHandler>();
 
-            services.AddTransient<IRequestHandler<FetchAccountByPersonId,
+            services.AddTransient<IRequestHandler<FetchAccountByPersonIdRequest,
                 AccountsResponse<AccountVm>>,
                 FetchAccountByPersonIdHandler>();
 
-            services.AddTransient<IRequestHandler<CreateAccount,
+            services.AddTransient<IRequestHandler<CreateAccountRequest,
                 AccountsResponse<AccountVm>>,
                 CreateAccountHandler>();
 
-            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountById,
+            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountByIdRequest,
                                                                AccountsResponse<AccountVm>,
                                                                Exception>),
                                                                typeof(FetchAccountByIdExceptionHandler));
 
-            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountByPersonId,
+            services.AddScoped(typeof(IRequestExceptionHandler<FetchAccountByPersonIdRequest,
                                                    AccountsResponse<AccountVm>,
                                                    Exception>),
                                                    typeof(FetchAccountByPersonIdExceptionHandler));
 
-            services.AddScoped(typeof(IRequestExceptionHandler<CreateAccount,
+            services.AddScoped(typeof(IRequestExceptionHandler<CreateAccountRequest,
                                                    AccountsResponse<AccountVm>,
                                                    Exception>),
                                                    typeof(CreateAccountExceptionHandler));

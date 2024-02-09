@@ -5,10 +5,10 @@ using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using AutoMapper;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.FetchAccountById
 {
     public class FetchAccountByIdHandler :
-        CommandHandler<FetchAccountById,
+        CommandHandler<FetchAccountByIdRequest,
         AccountVm>
     {
         private readonly IAccountProvider _accountProvider;
@@ -20,7 +20,7 @@ namespace Accounts.Application.Mediator.Handlers
             _accountProvider = accountProvider;
         }
 
-        public override async Task<AccountsResponse<AccountVm>> Handle(FetchAccountById request, CancellationToken cancellationToken)
+        public override async Task<AccountsResponse<AccountVm>> Handle(FetchAccountByIdRequest request, CancellationToken cancellationToken)
         {
             var response = await _accountProvider.GetAccountById(request.AccountId);
 

@@ -2,7 +2,7 @@
 
 namespace Accounts.Application.ViewModel.Requests
 {
-    public class CreateAccountRequest
+    public class CreateAccount
     {
         [Required]
         public Guid PersonId { get; set; }

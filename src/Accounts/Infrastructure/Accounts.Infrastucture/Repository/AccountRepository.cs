@@ -22,7 +22,6 @@ namespace Accounts.Infrastucture.Repository
 
             return result.Include(t => t.PaymentMethods)
                          .Include(t => t.People);
-
         }
 
     }

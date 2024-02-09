@@ -1,12 +1,7 @@
 ﻿using Accounts.Application.Mediator.UseCase.Create;
 using Accounts.Application.Mediator.UseCase.Get;
-using Accounts.Domain.Business.Interfaces;
-using Accounts.Domain.Model;
-using Accounts.Application.ViewModel;
-using Accounts.Application.ViewModel.Accounts;
 using Accounts.Application.ViewModel.Requests;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Accounts.Web.ServiceApi.Controllers
@@ -23,33 +18,31 @@ namespace Accounts.Web.ServiceApi.Controllers
         {
             _logger = logger;
         }
-        
-   
 
         [HttpGet("Account/{Id}")]
-        public async Task<AccountsResponse<AccountVm>> FetchAccountById(Guid Id)
+        public async Task<IActionResult> FetchAccountById(Guid Id)
         {
-            return await Send(new FetchAccountById
+            return await Send(new FetchAccountByIdRequest
             {
                 AccountId = Id,
             });
         }
 
         [HttpGet("Persons/Person/{Id}")]
-        public async Task<AccountsResponse<AccountVm>> FetchAccountByPersonId(Guid Id)
+        public async Task<IActionResult> FetchAccountByPersonId(Guid Id)
         {
-            return await Send(new FetchAccountByPersonId
+            return await Send(new FetchAccountByPersonIdRequest
             {
                 PersonId = Id,
             });
         }
 
         [HttpPost(Name = "CreateAccount")]
-        public async Task<AccountsResponse<AccountVm>> CreateAccount(CreateAccountRequest request)
+        public async Task<IActionResult> CreateAccount(CreateAccount request)
         {
-            return await Send(new CreateAccount
+            return await Send(new CreateAccountRequest
             {
-                CreateAccountRequest = request
+                CreateAccount = request
             });
         }
     }

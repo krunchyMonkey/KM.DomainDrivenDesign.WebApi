@@ -1,15 +1,16 @@
 ﻿using Accounts.Domain.Business.Interfaces;
 using Accounts.Domain.Model;
-using Accounts.Application.ViewModel;
+
 using Accounts.Application.ViewModel.Accounts;
 using Accounts.Application.ViewModel.Requests;
 using AutoMapper;
 using Accounts.Application.Mediator.UseCase.Create;
+using Accounts.Application.ViewModel;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.CreateAccount
 {
     public class CreateAccountHandler :
-        CommandHandler<CreateAccount,
+        CommandHandler<CreateAccountRequest,
         AccountVm>
     {
         private readonly IAccountProvider _accountProvider;
@@ -21,11 +22,11 @@ namespace Accounts.Application.Mediator.Handlers
             _accountProvider = accountProvider;
         }
 
-        public override async Task<AccountsResponse<AccountVm>> Handle(CreateAccount request, CancellationToken cancellationToken)
+        public override async Task<AccountsResponse<AccountVm>> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
         {
-            var createAccountRequest = request.CreateAccountRequest;
+            var createAccountRequest = request.CreateAccount;
 
-            var accountRequest = Mapper.Map<CreateAccountRequest, Account>(request.CreateAccountRequest);
+            var accountRequest = Mapper.Map<ViewModel.Requests.CreateAccount, Account>(request.CreateAccount);
 
             accountRequest.People = new List<Person>()
             {

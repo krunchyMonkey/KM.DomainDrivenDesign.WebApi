@@ -27,14 +27,13 @@ namespace Accounts.Application.Mapping.Profiles
 
         public void BuildCommandReqests() 
         {
-            CreateMap<CreateAccountRequest, Person>()
+            CreateMap<CreateAccount, Person>()
                     .ForMember(destination => destination.Id, source => source.MapFrom(s => s.PersonId))
                     .ForMember(destination => destination.FirstName, opt => opt.Ignore())
                     .ForMember(destination => destination.LastName, opt => opt.Ignore())
                     .ForMember(destination => destination.Age, opt => opt.Ignore());
 
-
-            CreateMap<CreateAccountRequest, Account>()
+            CreateMap<CreateAccount, Account>()
                  .ForMember(destination => destination.AccountType, source => source.MapFrom(s => s.AccountType))
                  .ForMember(destination => destination.Address, source => source.MapFrom(s => s.Address))
                  .ForMember(destination => destination.City, source => source.MapFrom(s => s.City))

@@ -5,9 +5,9 @@ using Accounts.Application.ViewModel;
 using Accounts.Application.ViewModel.Accounts;
 using AutoMapper;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.FetchAccountByPersonId
 {
-    public class FetchAccountByPersonIdHandler : CommandHandler<FetchAccountByPersonId, AccountVm>
+    public class FetchAccountByPersonIdHandler : CommandHandler<FetchAccountByPersonIdRequest, AccountVm>
     {
         private readonly IAccountProvider _accountProvider;
 
@@ -17,7 +17,7 @@ namespace Accounts.Application.Mediator.Handlers
             _accountProvider = accountProvider;
         }
 
-        public override async Task<AccountsResponse<AccountVm>> Handle(FetchAccountByPersonId request, CancellationToken cancellationToken)
+        public override async Task<AccountsResponse<AccountVm>> Handle(FetchAccountByPersonIdRequest request, CancellationToken cancellationToken)
         {
             var response = await _accountProvider.GetAccountByPersonId(request.PersonId);
 

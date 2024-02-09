@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using Accounts.Application.ViewModel.Accounts;
+using Accounts.Application.ViewModel;
+using Azure.Core;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,14 +13,20 @@ namespace Accounts.Web.ServiceApi.Controllers
     {
         protected readonly IMediator Mediator;
 
-        public ApiController(IMediator mediator) 
+        public ApiController(IMediator mediator)
         {
             Mediator = mediator;
         }
 
-        protected async Task<T> Send<T>(IRequest<T> request)
+        protected async Task<IActionResult> Send<T>(IRequest<AccountsResponse<T>> request)
         {
-            return await Mediator.Send(request);
+            var response = await Mediator.Send(request);
+
+            var formatedResponse = new JsonResult(response);
+
+            formatedResponse.StatusCode = response.HttpResultCode;
+
+            return formatedResponse;
         }
     }
 }

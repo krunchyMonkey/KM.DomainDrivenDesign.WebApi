@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.FetchAccountById
 {
     public class FetchAccountByIdExceptionHandler :
-        BaseExceptionHandler<FetchAccountById,
+        BaseExceptionHandler<FetchAccountByIdRequest,
         AccountsResponse<AccountVm>,
         Exception,
         AccountVm

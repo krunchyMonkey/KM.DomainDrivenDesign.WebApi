@@ -1,5 +1,5 @@
-﻿using Accounts.Application.ViewModel.Accounts;
-using Accounts.Application.ViewModel;
+﻿using Accounts.Application.ViewModel;
+using Accounts.Application.ViewModel.Accounts;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Accounts.Application.Mediator.UseCase.Get
 {
-    public class FetchAccountByPersonId : 
+    public class FetchAccountByIdRequest : 
         IRequest<AccountsResponse<AccountVm>>
     {
-        public Guid PersonId { get; set; }
+        public Guid AccountId { get; set; }
     }
 }

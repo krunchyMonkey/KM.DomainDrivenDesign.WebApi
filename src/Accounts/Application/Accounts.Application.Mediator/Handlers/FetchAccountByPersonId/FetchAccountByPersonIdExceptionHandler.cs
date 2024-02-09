@@ -3,17 +3,17 @@ using Accounts.Application.ViewModel;
 using Microsoft.Extensions.Logging;
 using Accounts.Application.Mediator.UseCase.Get;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.FetchAccountByPersonId
 {
     public class FetchAccountByPersonIdExceptionHandler :
-        BaseExceptionHandler<FetchAccountByPersonId,
+        BaseExceptionHandler<FetchAccountByPersonIdRequest,
         AccountsResponse<AccountVm>,
         Exception,
         AccountVm
         >
     {
         public FetchAccountByPersonIdExceptionHandler(
-            ILogger<BaseExceptionHandler<FetchAccountByPersonId, AccountsResponse<AccountVm>, Exception, AccountVm>> logger) : base(logger)
+            ILogger<BaseExceptionHandler<FetchAccountByPersonIdRequest, AccountsResponse<AccountVm>, Exception, AccountVm>> logger) : base(logger)
         {
         }
     }

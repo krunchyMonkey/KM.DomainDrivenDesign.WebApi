@@ -3,17 +3,17 @@ using Accounts.Application.ViewModel;
 using Microsoft.Extensions.Logging;
 using Accounts.Application.Mediator.UseCase.Create;
 
-namespace Accounts.Application.Mediator.Handlers
+namespace Accounts.Application.Mediator.Handlers.CreateAccount
 {
     public class CreateAccountExceptionHandler :
-        BaseExceptionHandler<CreateAccount,
+        BaseExceptionHandler<CreateAccountRequest,
         AccountsResponse<AccountVm>,
         Exception,
         AccountVm
         >
     {
         public CreateAccountExceptionHandler(
-            ILogger<BaseExceptionHandler<CreateAccount, AccountsResponse<AccountVm>, Exception, AccountVm>> logger) : base(logger)
+            ILogger<BaseExceptionHandler<CreateAccountRequest, AccountsResponse<AccountVm>, Exception, AccountVm>> logger) : base(logger)
         {
         }
     }
