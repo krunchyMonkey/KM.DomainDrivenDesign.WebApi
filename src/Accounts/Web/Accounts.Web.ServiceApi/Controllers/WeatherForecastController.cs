@@ -8,7 +8,7 @@ namespace Accounts.Web.ServiceApi.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "LOL", "LOL", "LOL", "LOL", "LOL", "LOL", "LOL", "LOL", "LOL", "LOL"
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
